@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        
+    <title>Rick and Morty</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rick and Morty</h1>
+    
+        {% for character in information.characters %}
+            <div class="row" style="display:inline-block;">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="circle responsive-img" src={{ character.image }}>
+                            <span class="card-title">{{ character.name}}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Status: {{character.status}}</p>
+                            <p>Species: {{character.species}}</p>
+                          </div>
+                          <div class="card-action">
+                            <a href="#">Read More</a>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
