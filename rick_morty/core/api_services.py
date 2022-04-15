@@ -19,5 +19,28 @@ def get_all_characters():
             character_lst.append(character)
         return character_lst
     else:
+        print(response.status_code)
+
+def get_character_detail(id):
+    response = requests.get(BASE_URL + '/character/' + str(id))
+    if response.status_code == 200:
+        response = response.json()
+        episode_detail = []
+        episodes = response['episode']
+        for episode in episodes:
+            episode_response = requests.get(episode)
+            if episode_response.status_code == 200:
+                episode_response = episode_response.json()
+                detail = {
+                    'name' : episode_response['name'],
+                    'air_date' : episode_response['air_date'],
+                    'episode' : episode_response['episode']
+                }
+                episode_detail.append(detail)
+            else:
+                print(episode_response.status_code)
+        response['episode'] = episode_detail
+        return response
+    else:
         print(response)
     

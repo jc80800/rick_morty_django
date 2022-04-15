@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <title>Character Detail</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ information.name }}</h1>
+        <img class="circle responsive-img" src={{ information.image }}>
+        <table class="striped">
+            <tbody>
+                <tr>
+                    <td>Status: {{information.status}}</td>
+                </tr>
+                <tr>
+                    <td>Species: {{information.species}}</td>
+                </tr>
+                <tr>
+                    <td>Gender: {{information.gender}}</td>
+                </tr>
+                <tr>
+                    <td>Origin: {{information.origin.name}}</td>
+                </tr>
+                <tr>
+                    <td>Location: {{information.location.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="collapsible">
+            <li>
+                <div class="collapsible-header">Appeared in Episodes...</div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <table>
+                                <tbody>
+                                    {% for episode in information.episode %}
+                                        <tr>
+                                            <td>{{episode.name}}</td>
+                                            <td>{{episode.episode}}</td>
+                                            <td>{{episode.air_date}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems, true);
+        });
+    </script>
+</body>
+</html>
