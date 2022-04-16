@@ -43,4 +43,25 @@ def get_character_detail(id):
         return response
     else:
         print(response)
+
+def get_all_episodes():
+    response = requests.get(BASE_URL + "/episode")
+
+    if response.status_code == 200:
+        response = response.json()
+
+        results = response['results']
+        episode_detail = []
+        for episode in results:
+            detail = {
+                'id' : episode['id'],
+                'name' : episode['name'],
+                'air_date' : episode['air_date'],
+                'episode' : episode['episode']
+            }
+            episode_detail.append(detail)
+        return episode_detail
+    else:
+        print(response.status_code)
+
     

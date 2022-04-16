@@ -26,30 +26,16 @@
                     max-width: 250px;">
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">Characters</a></li>
+                    <li><a href="/">Characters</a></li>
                     <li><a href="/episodes">Episodes</a></li>
                 </ul>
             </div>
         </nav>
-        {% for character in information.characters %}
-            <div class="row" style="display:inline-block;">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src={{ character.image }}>
-                            <span class="card-title" style="color:black;font-weight:bold">{{ character.name}}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>Status: {{character.status}}</p>
-                            <p>Species: {{character.species}}</p>
-                          </div>
-                          <div class="card-action">
-                            <a href="/character/{{character.id}}">Read More</a>
-                          </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+        <div class="collection">
+            {% for episode in information %}
+                <a href="#" class="collection-item">{{ episode.episode }} | {{ episode.name }} | {{ episode.air_date }}</a>
+            {% endfor %}
+        </div>
     </div>
 
     <!-- Compiled and minified JavaScript -->
