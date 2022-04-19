@@ -9,7 +9,6 @@
 - Showcases over 51 Episodes 
     - For each episode, there is a comment section (in-progress)
 
-
 - Clients are able to register and login into their account (in-progress)
 - Each user can comment on episode (in-progress)
 
