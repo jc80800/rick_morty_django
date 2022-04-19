@@ -2,11 +2,12 @@ import requests
 
 BASE_URL = "https://rickandmortyapi.com/api"
 
-def get_all_characters():
-    response = requests.get(BASE_URL + '/character')
+def get_all_characters(page_num):
+    response = requests.get(BASE_URL + '/character/' + "?page=" + str(page_num))
     if response.status_code == 200:
         response = response.json()
         character_lst = []
+        num_pages = response['info']['pages']
         results = response['results']
         for item in results:
             character = {
@@ -17,7 +18,12 @@ def get_all_characters():
                 'species': item['species'],
             }
             character_lst.append(character)
-        return character_lst
+        information = {
+            'character_lst' : character_lst,
+            'num_pages' : num_pages
+        }
+        return information
+        
     else:
         print(response.status_code)
 

@@ -31,6 +31,17 @@
                 </ul>
             </div>
         </nav>
+
+        <ul class="pagination">
+            {% for page in information.pages %}
+                {% if page == information.page_id %}
+                    <li class="active"><a href="/{{ page }}">{{ page }}</a></li>
+                {% else %}
+                    <li class="waves-effect"><a href="/{{ page }}">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
         {% for character in information.characters %}
             <div class="row" style="display:inline-block;">
                 <div class="col">

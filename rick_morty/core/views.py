@@ -7,9 +7,15 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        character_lst = api_services.get_all_characters()
+        if "pk" not in kwargs:
+            kwargs['pk'] = 1
+        information = api_services.get_all_characters(kwargs['pk'])
+        character_lst = information['character_lst']
+        num_pages = information['num_pages']
         context['information'] = {
-            'characters' : character_lst
+            'page_id': kwargs['pk'],
+            'characters' : character_lst,
+            'pages': range(1, num_pages + 1)
         }
         return context
 
