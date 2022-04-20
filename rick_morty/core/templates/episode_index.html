@@ -33,7 +33,7 @@
         </nav>
         <div class="collection">
             {% for episode in information %}
-                <a href="#" class="collection-item">{{ episode.episode }} | {{ episode.name }} | {{ episode.air_date }}</a>
+                <a href="{{ episode.id }}" class="collection-item">{{ episode.episode }} | {{ episode.name }} | {{ episode.air_date  }}</a>
             {% endfor %}
         </div>
     </div>

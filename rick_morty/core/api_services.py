@@ -40,7 +40,8 @@ def get_character_detail(id):
                 detail = {
                     'name' : episode_response['name'],
                     'air_date' : episode_response['air_date'],
-                    'episode' : episode_response['episode']
+                    'episode' : episode_response['episode'],
+                    'id' : episode_response['id']
                 }
                 episode_detail.append(detail)
             else:

@@ -1,6 +1,8 @@
 from re import template
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from . import api_services
+from .forms import CreateUserForm
+from django.http import HttpResponseRedirect
 
 class Index(TemplateView):
     template_name = 'index.html'
@@ -36,6 +38,27 @@ class EpisodeIndex(TemplateView):
         episode_detail = api_services.get_all_episodes()
         context['information'] = episode_detail
         return context
+    
+class EpisodeDetail(TemplateView):
+    template_name = 'episode_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+class CreateUserView(FormView):
+    template_name = 'register.html'
+    form_class = CreateUserForm
+    success_url = "register_success"
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+class RegisterSuccessView(TemplateView):
+    template_name = 'register_success.html'
+
+    
     
         
 
