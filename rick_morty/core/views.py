@@ -4,6 +4,9 @@ from . import api_services
 from .forms import CreateUserForm
 from django.http import HttpResponseRedirect
 
+"""
+Class based view for the main page showing character page 1
+"""
 class Index(TemplateView):
     template_name = 'index.html'
 
@@ -21,6 +24,11 @@ class Index(TemplateView):
         }
         return context
 
+"""
+Class based view showing a detailed character page
+
+args: <int: pk> : character id
+"""
 class CharacterDetail(TemplateView):
     template_name = 'character_detail.html'
 
@@ -30,6 +38,9 @@ class CharacterDetail(TemplateView):
         context['information'] = character_detail
         return context
     
+"""
+Class based view showing the list of episodes
+"""
 class EpisodeIndex(TemplateView):
     template_name = 'episode_index.html'
 
@@ -39,6 +50,11 @@ class EpisodeIndex(TemplateView):
         context['information'] = episode_detail
         return context
     
+"""
+Class based view showing a detailed episode
+ 
+args: <int: pk> : episode id
+"""
 class EpisodeDetail(TemplateView):
     template_name = 'episode_detail.html'
 
@@ -46,6 +62,9 @@ class EpisodeDetail(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
     
+"""
+Class based Form view that will render a User registration form
+"""
 class CreateUserView(FormView):
     template_name = 'register.html'
     form_class = CreateUserForm
@@ -55,6 +74,9 @@ class CreateUserView(FormView):
         form.save()
         return HttpResponseRedirect(self.get_success_url())
 
+"""
+Class based view that display successful registration
+"""
 class RegisterSuccessView(TemplateView):
     template_name = 'register_success.html'
 
