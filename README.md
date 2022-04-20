@@ -13,6 +13,8 @@
     ![alt text](https://github.com/jc80800/rick_morty_django/blob/master/readmeimg/episode_list.png)
     - For each episode, there is a comment section (in-progress)
 
-- Clients are able to register and login into their account (in-progress)
+- Clients are able to register their own account
+    - User Information includes: first name, last name, username, email, password
+    ![alt text](https://github.com/jc80800/rick_morty_django/blob/master/readmeimg/registration.png)
 - Each user can comment on episode (in-progress)
 
