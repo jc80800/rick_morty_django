@@ -71,4 +71,20 @@ def get_all_episodes():
     else:
         print(response.status_code)
 
+def get_one_episode(id):
+    response = requests.get(BASE_URL + "/episode/" + str(id))
+
+    if response.status_code == 200:
+        episode = response.json()
+        detail = {
+            'id' : episode['id'],
+            'name' : episode['name'],
+            'air_date' : episode['air_date'],
+            'episode' : episode['episode']
+        }
+        return detail
+    else:
+        print(response.status_code)
+
+
     

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        
+    <title>Rick and Morty</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rick and Morty</h1>
+
+        <nav>
+            <div class="nav-wrapper">
+                {% load static %}
+                <a class="brand-logo"><img src="{% static 'images/rm_logo.png' %}" 
+                    style="height: auto;
+                    width: auto;
+                    max-height: 65px;
+                    max-width: 250px;">
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/">Characters</a></li>
+                    <li><a href="/episodes">Episodes</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="collection">
+                <a class="collection-item">{{ episode.episode }} | {{ episode.name }} | {{ episode.air_date  }}</a>
+            </div>
+
+            <div class="row">
+                <form class="col s12" method="POST" action="">
+                    {% csrf_token %}
+                  <div class="row">
+                    <div class="input-field col s12">
+                      {{ form.body }}
+                      
+                    </div>
+                  </div>
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                </form>
+              </div>
+        </div>
+
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

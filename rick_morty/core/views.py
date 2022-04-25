@@ -1,7 +1,7 @@
 from re import template
 from django.views.generic import TemplateView, FormView
 from . import api_services
-from .forms import CreateUserForm
+from .forms import CreateUserForm, CommentForm
 from django.http import HttpResponseRedirect
 
 """
@@ -50,18 +50,7 @@ class EpisodeIndex(TemplateView):
         context['information'] = episode_detail
         return context
     
-"""
-Class based view showing a detailed episode
  
-args: <int: pk> : episode id
-"""
-class EpisodeDetail(TemplateView):
-    template_name = 'episode_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-    
 """
 Class based Form view that will render a User registration form
 """
@@ -79,6 +68,41 @@ Class based view that display successful registration
 """
 class RegisterSuccessView(TemplateView):
     template_name = 'register_success.html'
+
+    
+class CreateCommentView(FormView):
+    template_name = 'episode_detail.html'
+    form_class = CommentForm
+    
+    def get(self, request, **kwargs):
+        context = super().get_context_data(**kwargs)
+        episode_detail = api_services.get_one_episode(kwargs['pk'])
+        context['episode'] = episode_detail
+        return self.render_to_response(context)
+
+    def post(self, request, **kwargs):
+        form = self.get_form()
+        new_comment = form.save(commit=False)
+        new_comment.episode = kwargs['pk']
+        new_comment.save()
+        return self.form_valid(form)
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def get_success_url(self):
+        return self.request.path
+
+    
+
+    
+
+        
+
+    
+
+
 
     
     
